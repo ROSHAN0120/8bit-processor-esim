@@ -1,0 +1,78 @@
+* /home/roshan/esim-workspace/8bit_micro/8bit_micro.cir
+
+* u3  clk net-_u1-pad1_ adc_bridge_1
+* u4  net-_u1-pad2_ net-_u1-pad3_ net-_u1-pad4_ net-_u1-pad5_ net-_u1-pad6_ net-_u1-pad7_ net-_u1-pad8_ net-_u1-pad9_ o1 o2 o3 o4 o5 o6 o7 o8 dac_bridge_8
+* u5  net-_u1-pad10_ net-_u1-pad11_ net-_u1-pad12_ net-_u1-pad13_ net-_u1-pad14_ net-_u1-pad15_ net-_u1-pad16_ net-_u1-pad17_ o9 o10 o11 o12 o13 o14 o15 o16 dac_bridge_8
+* u6  net-_u1-pad18_ net-_u1-pad19_ net-_u1-pad20_ net-_u1-pad21_ net-_u1-pad22_ net-_u1-pad23_ o17 o18 o19 o20 o21 o22 dac_bridge_6
+* u7  o1 plot_v1
+* u8  o2 plot_v1
+* u9  o3 plot_v1
+* u10  o4 plot_v1
+* u11  o5 plot_v1
+* u12  o6 plot_v1
+* u13  o7 plot_v1
+* u14  o8 plot_v1
+* u15  o9 plot_v1
+* u16  o10 plot_v1
+* u17  o11 plot_v1
+* u18  o12 plot_v1
+* u19  o13 plot_v1
+* u20  o14 plot_v1
+* u21  o15 plot_v1
+* u22  o16 plot_v1
+* u23  o17 plot_v1
+* u24  o18 plot_v1
+* u25  o19 plot_v1
+* u26  o20 plot_v1
+* u27  o21 plot_v1
+* u28  o22 plot_v1
+* u2  clk plot_v1
+v1  clk gnd pulse(5 0 1m 1m 1m 20 40)
+* u1  net-_u1-pad1_ net-_u1-pad2_ net-_u1-pad3_ net-_u1-pad4_ net-_u1-pad5_ net-_u1-pad6_ net-_u1-pad7_ net-_u1-pad8_ net-_u1-pad9_ net-_u1-pad10_ net-_u1-pad11_ net-_u1-pad12_ net-_u1-pad13_ net-_u1-pad14_ net-_u1-pad15_ net-_u1-pad16_ net-_u1-pad17_ net-_u1-pad18_ net-_u1-pad19_ net-_u1-pad20_ net-_u1-pad21_ net-_u1-pad22_ net-_u1-pad23_ cpu
+a1 [clk ] [net-_u1-pad1_ ] u3
+a2 [net-_u1-pad2_ net-_u1-pad3_ net-_u1-pad4_ net-_u1-pad5_ net-_u1-pad6_ net-_u1-pad7_ net-_u1-pad8_ net-_u1-pad9_ ] [o1 o2 o3 o4 o5 o6 o7 o8 ] u4
+a3 [net-_u1-pad10_ net-_u1-pad11_ net-_u1-pad12_ net-_u1-pad13_ net-_u1-pad14_ net-_u1-pad15_ net-_u1-pad16_ net-_u1-pad17_ ] [o9 o10 o11 o12 o13 o14 o15 o16 ] u5
+a4 [net-_u1-pad18_ net-_u1-pad19_ net-_u1-pad20_ net-_u1-pad21_ net-_u1-pad22_ net-_u1-pad23_ ] [o17 o18 o19 o20 o21 o22 ] u6
+a5 [net-_u1-pad1_ ] [net-_u1-pad2_ net-_u1-pad3_ net-_u1-pad4_ net-_u1-pad5_ net-_u1-pad6_ net-_u1-pad7_ net-_u1-pad8_ net-_u1-pad9_ ] [net-_u1-pad10_ net-_u1-pad11_ net-_u1-pad12_ net-_u1-pad13_ net-_u1-pad14_ net-_u1-pad15_ net-_u1-pad16_ ] [net-_u1-pad17_ net-_u1-pad18_ net-_u1-pad19_ net-_u1-pad20_ net-_u1-pad21_ net-_u1-pad22_ net-_u1-pad23_ ] u1
+* Schematic Name:                             adc_bridge_1, NgSpice Name: adc_bridge
+.model u3 adc_bridge(in_low=1.0 in_high=2.0 rise_delay=1.0e-9 fall_delay=1.0e-9 ) 
+* Schematic Name:                             dac_bridge_8, NgSpice Name: dac_bridge
+.model u4 dac_bridge(out_low=0.0 out_high=5.0 out_undef=0.5 input_load=1.0e-12 t_rise=1.0e-9 t_fall=1.0e-9 ) 
+* Schematic Name:                             dac_bridge_8, NgSpice Name: dac_bridge
+.model u5 dac_bridge(out_low=0.0 out_high=5.0 out_undef=0.5 input_load=1.0e-12 t_rise=1.0e-9 t_fall=1.0e-9 ) 
+* Schematic Name:                             dac_bridge_6, NgSpice Name: dac_bridge
+.model u6 dac_bridge(out_low=0.0 out_high=5.0 out_undef=0.5 input_load=1.0e-12 t_rise=1.0e-9 t_fall=1.0e-9 ) 
+* Schematic Name:                             cpu, NgSpice Name: cpu
+.model u1 cpu(rise_delay=1.0e-9 fall_delay=1.0e-9 input_load=1.0e-12 instance_id=1 ) 
+.tran 0.1e-00 1280e-00 0e-00
+
+* Control Statements 
+.control
+run
+print allv > plot_data_v.txt
+print alli > plot_data_i.txt
+plot v(o1)
+plot v(o2)
+plot v(o3)
+plot v(o4)
+plot v(o5)
+plot v(o6)
+plot v(o7)
+plot v(o8)
+plot v(o9)
+plot v(o10)
+plot v(o11)
+plot v(o12)
+plot v(o13)
+plot v(o14)
+plot v(o15)
+plot v(o16)
+plot v(o17)
+plot v(o18)
+plot v(o19)
+plot v(o20)
+plot v(o21)
+plot v(o22)
+plot v(clk)
+.endc
+.end
